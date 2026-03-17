@@ -1,4 +1,4 @@
-name: Build R4S 1G Snapshot
+name: Build R4S 1G Snapshot (2GB Rootfs)
 on:
   workflow_dispatch:
 
@@ -20,10 +20,10 @@ jobs:
       - name: Build Firmware
         run: |
           cd builder
-          make image PROFILE="friendlyarm_nanopi-r4s" PACKAGES="luci luci-i18n-base-zh-cn luci-app-homeproxy ppp ppp-mod-pppoe luci-compat"
+          make image PROFILE="friendlyarm_nanopi-r4s" PACKAGES="luci luci-i18n-base-zh-cn luci-app-homeproxy ppp ppp-mod-pppoe luci-compat" ROOTFS_PARTSIZE="2048"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ImmortalWrt-R4S-Snapshot-Firmware
+          name: ImmortalWrt-R4S-Snapshot-2GB-Firmware
           path: builder/bin/targets/rockchip/armv8/*sysupgrade*.img.gz
