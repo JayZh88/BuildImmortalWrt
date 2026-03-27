@@ -1,4 +1,4 @@
-name: Build R4S 1G Snapshot (2GB Rootfs)
+name: Build R4S 1G SNAPSHOT (2GB, HomeProxy)
 on:
   workflow_dispatch:
 
@@ -25,5 +25,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ImmortalWrt-R4S-Snapshot-2GB-Firmware
+          name: ImmortalWrt-R4S-Snapshot-2GB-HomeProxy
           path: builder/bin/targets/rockchip/armv8/*sysupgrade*.img.gz
