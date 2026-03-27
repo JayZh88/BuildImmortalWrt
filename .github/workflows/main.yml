@@ -1,4 +1,4 @@
-name: Build R4S 1G 25.12.0-rc1 Final (2GB & qB)
+name: Build R4S 1G 25.12.0-rc1 (2GB Rootfs)
 on:
   workflow_dispatch:
 
@@ -20,14 +20,10 @@ jobs:
       - name: Build Firmware
         run: |
           cd builder
-          # 核心插件清单：含中文、HomeProxy(外网)、PPPoE(拨号)、qBittorrent(下载)
-          make image PROFILE="friendlyarm_nanopi-r4s" \
-          PACKAGES="luci luci-i18n-base-zh-cn luci-app-homeproxy ppp ppp-mod-pppoe luci-compat luci-app-qbittorrent luci-i18n-qbittorrent-zh-cn" \
-          FILES="files" \
-          ROOTFS_PARTSIZE="2048"
+          make image PROFILE="friendlyarm_nanopi-r4s" PACKAGES="luci luci-i18n-base-zh-cn luci-app-homeproxy ppp ppp-mod-pppoe luci-compat" ROOTFS_PARTSIZE="2048"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ImmortalWrt-R4S-25.12-RC1-2GB-qB-Firmware
+          name: ImmortalWrt-R4S-25.12.0-rc1-2GB-Firmware
           path: builder/bin/targets/rockchip/armv8/*sysupgrade*.img.gz
